@@ -25,7 +25,6 @@ fn main() {
 		Ok(thing) => prefs = thing,
 		Err(_e) => {
 			println!("Failed to load configs.\nSolution: add a properly-filled config.yaml file to the folder executing the program. Check the namesake folder for examples.");
-			dont_disappear::any_key_to_continue::default();
 			return;
 		}
 	};
@@ -37,7 +36,6 @@ fn main() {
 
 	if args.is_empty() {
 		println!("Unable to produce any icons. \nSolution: Either add a file to be opened in the config.yaml file or click and drag one or more files into the executable file.");
-		dont_disappear::any_key_to_continue::default();
 		return;
 	}
 
@@ -47,14 +45,12 @@ fn main() {
 			Ok(f) => f,
 			Err(e) => {
 				println!("Wrong file path: {:#?}", e);
-				dont_disappear::any_key_to_continue::default();
 				return;
 			}
 		};
 		let mut contents = Vec::new();
 		if let Err(e) = file.read_to_end(&mut contents) {
 			println!("Unable to read file: {:#?}", e);
-			dont_disappear::any_key_to_continue::default();
 			return;
 		};
 		let cursor = Cursor::new(contents);
@@ -71,11 +67,9 @@ fn main() {
 			Ok(_x) => println!("Icons built successfully."),
 			Err(x) => println!("Error building icon: {:#?}", x),
 		};
-		dont_disappear::any_key_to_continue::default();
 	}
 
 	println!("Program finished.");
-	dont_disappear::any_key_to_continue::default();
 }
 
 fn build_icons(
